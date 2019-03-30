@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
     tools:context=".MainActivity">
 
     <LinearLayout
@@ -21,7 +22,8 @@
             android:layout_width="250dp"
             android:layout_height="250dp"
             android:layout_gravity="center"
-            android:layout_marginLeft="10dp" />
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/img" />
 
         <TextView
             android:id="@+id/startTitle"
@@ -56,6 +58,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:background="@drawable/button_background"
             android:paddingLeft="30dp"
             android:paddingRight="30dp"
             android:text="@string/let_s_do_it"
