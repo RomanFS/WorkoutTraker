@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Workout Traker</string>
+    <string name="startTitle">Want Our Advice?</string>
+    <string name="startDesc">Ut justo turpis, accumsan vitae fringilla eu, pellentesque et elit. Nam aliquet mi in consequat lobortis. In venenatis velit at.</string>
+    <string name="let_s_do_it">Let\'s do it</string>
+    <string name="do_it_later">Do it later</string>
+    <string name="str_continue">Continue</string>
+</resources>

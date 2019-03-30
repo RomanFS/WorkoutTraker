@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimaryDark">@color/statusGray</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="StartActivity" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:background">@color/colorAccent</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+    </style>
+
+    <color name="statusGray">#eee</color>
+</resources>
