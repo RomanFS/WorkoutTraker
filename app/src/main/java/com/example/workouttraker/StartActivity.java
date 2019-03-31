@@ -3,20 +3,21 @@ package com.example.workouttraker;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import org.w3c.dom.Text;
+import java.util.ArrayList;
 
-public class StartActivity extends AppCompatActivity implements OnClickListener {
+public class StartActivity extends AppCompatActivity {
     private FragmentManager fragmentManager = getSupportFragmentManager();
     private int index = 0;
+
+    private ArrayList<Fragment> mFragments;
+
     final FragmentStart1 fragment1 = new FragmentStart1();
     final FragmentStart2 fragment2 = new FragmentStart2();
     final FragmentStart3 fragment3 = new FragmentStart3();
@@ -29,58 +30,52 @@ public class StartActivity extends AppCompatActivity implements OnClickListener 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
-        // GetButton
+        // Init buttons
         Button back = findViewById(R.id.back);
         Button btContinue = findViewById(R.id.bt_continue);
 
-        back.setOnClickListener(this);
-        btContinue.setOnClickListener(this);
+        back.setOnClickListener(v -> {
+            if (index > 0) index--;
+            onBackPressed();
 
-        TextView page = findViewById(R.id.page_num);
-        page.setText(Integer.toString(index+1) + " of 5");
+            this.updateTip_Pages();
+        });
+        btContinue.setOnClickListener(v -> {
+            if (index < 4) {
+                index++;
+                updateView();
+            }
+            this.updateTip_Pages();
+        });
+        this.updateTip_Pages();
 
-        setFragment();
+        // Fragments list init
+        mFragments = new ArrayList<Fragment>();
+
+        mFragments.add(fragment1);
+        mFragments.add(fragment2);
+        mFragments.add(fragment3);
+        mFragments.add(fragment4);
+        mFragments.add(fragment5);
+
+        // Setup activity fragment
+        updateView();
     }
 
-    public void setFragment() {
+    private void updateView() {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        switch (index) {
-            case 0:
-                fragmentTransaction.replace(R.id.container, fragment1);
-                break;
-            case 1:
-                fragmentTransaction.replace(R.id.container, fragment2).addToBackStack("TAG");
-                break;
-            case 2:
-                fragmentTransaction.replace(R.id.container, fragment3).addToBackStack("TAG");
-                break;
-            case 3:
-                fragmentTransaction.replace(R.id.container, fragment4).addToBackStack("TAG");
-                break;
-            case 4:
-                fragmentTransaction.replace(R.id.container, fragment5).addToBackStack("TAG");
-                break;
+
+        fragmentTransaction.replace(R.id.container, mFragments.get(index));
+        if(index > 0) {
+            fragmentTransaction.addToBackStack("FRAGMENT_" + index);
         }
+
         fragmentTransaction.commit();
     }
 
     @SuppressLint("SetTextI18n")
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.back:
-                if (index > 0) --index;
-                onBackPressed();
-                break;
-            case R.id.bt_continue:
-                if (index < 4) {
-                    ++index;
-                    setFragment();
-                }
-                break;
-        }
-
+    private void updateTip_Pages(){
         TextView page = findViewById(R.id.page_num);
-        page.setText(Integer.toString(index+1) + " of 5");
+        page.setText((index+1) + " of " + mFragments.size());
     }
 }
