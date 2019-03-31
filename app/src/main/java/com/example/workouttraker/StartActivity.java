@@ -11,15 +11,15 @@ import android.widget.Button;
 import android.widget.Toast;
 
 public class StartActivity extends AppCompatActivity implements OnClickListener {
-    final Button back = findViewById(R.id.back);
-    final Button btContinue = findViewById(R.id.bt_continue);
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
         // Button Call
+        Button back = findViewById(R.id.back);
+        Button btContinue = findViewById(R.id.bt_continue);
+
         back.setOnClickListener(this);
         btContinue.setOnClickListener(this);
 

@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        tools:text="Current page" />
+        android:text="Current page" />
 
     <LinearLayout
         android:padding="16dp"
@@ -43,7 +43,7 @@
             android:background="@drawable/ic_back"/>
 
         <Button
-            android:background="@android:color/white"
+            android:background="@color/transparent"
             android:textSize="18sp"
             android:textColor="#0043FF"
             android:padding="0dp"
