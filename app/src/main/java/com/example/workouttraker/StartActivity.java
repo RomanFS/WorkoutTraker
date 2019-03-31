@@ -10,9 +10,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import org.w3c.dom.Text;
 
 public class StartActivity extends AppCompatActivity implements OnClickListener {
     private FragmentManager fragmentManager = getSupportFragmentManager();
@@ -69,12 +66,12 @@ public class StartActivity extends AppCompatActivity implements OnClickListener 
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.back:
-                if (index > 0) --index;
+                if (index > 0) index--;
                 onBackPressed();
                 break;
             case R.id.bt_continue:
                 if (index < 4) {
-                    ++index;
+                    index++;
                     setFragment();
                 }
                 break;

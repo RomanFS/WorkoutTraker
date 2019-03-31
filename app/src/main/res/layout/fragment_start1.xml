@@ -3,13 +3,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     tools:context=".StartActivity">
 
     <TextView
-        android:text="First fragment"
-        android:layout_weight="1"
+        android:id="@+id/page1"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/page1_title"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/page1_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/page1_desc"
+        android:textAlignment="center"
+        android:textSize="18sp" />
+
 
 </LinearLayout>
