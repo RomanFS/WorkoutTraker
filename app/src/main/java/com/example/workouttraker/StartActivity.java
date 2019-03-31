@@ -11,12 +11,21 @@ import android.widget.Button;
 import android.widget.Toast;
 
 public class StartActivity extends AppCompatActivity implements OnClickListener {
+    private FragmentManager fragmentManager = getSupportFragmentManager();
+    private int index = 0;
+    // GetFragment
+    final FragmentStart1 fragment1 = new FragmentStart1();
+    final FragmentStart2 fragment2 = new FragmentStart2();
+    final FragmentStart3 fragment3 = new FragmentStart3();
+    final FragmentStart4 fragment4 = new FragmentStart4();
+    final FragmentStart5 fragment5 = new FragmentStart5();
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
-        // Button Call
+        // GetButton
         Button back = findViewById(R.id.back);
         Button btContinue = findViewById(R.id.bt_continue);
 
@@ -24,22 +33,46 @@ public class StartActivity extends AppCompatActivity implements OnClickListener 
         btContinue.setOnClickListener(this);
 
         // Fragment Viewer
-        FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
-        FragmentStart1 fragment = new FragmentStart1();
-        fragmentTransaction.add(R.id.container, fragment);
+        fragmentTransaction.add(R.id.container, fragment1);
         fragmentTransaction.commit();
+    }
+
+    //
+    public void setFragment() {
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        switch (index) {
+            case 0:
+                fragmentTransaction.replace(R.id.container, fragment1).addToBackStack("TAG").commit();
+                break;
+            case 1:
+                fragmentTransaction.replace(R.id.container, fragment2).addToBackStack("TAG").commit();
+                break;
+            case 2:
+                fragmentTransaction.replace(R.id.container, fragment3).addToBackStack("TAG").commit();
+                break;
+            case 3:
+                fragmentTransaction.replace(R.id.container, fragment4).addToBackStack("TAG").commit();
+                break;
+            case 4:
+                fragmentTransaction.replace(R.id.container, fragment5).addToBackStack("TAG").commit();
+                break;
+        }
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.back:
+                if (index > 0) index--;
                 onBackPressed();
                 break;
             case R.id.bt_continue:
-                Toast.makeText(StartActivity.this, "Next Fragment", Toast.LENGTH_SHORT).show();
+                Toast.makeText(StartActivity.this, Integer.toString(index), Toast.LENGTH_SHORT).show();
+                if (index < 4) {
+                    index++;
+                    setFragment();
+                }
                 break;
         }
     }
