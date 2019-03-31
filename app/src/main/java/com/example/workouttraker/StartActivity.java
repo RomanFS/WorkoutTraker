@@ -9,11 +9,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.TextView;
-<<<<<<< HEAD
-=======
-
 import java.util.ArrayList;
->>>>>>> c8d19842f8363fad745dec54d54217d7253bd856
 
 public class StartActivity extends AppCompatActivity {
     private FragmentManager fragmentManager = getSupportFragmentManager();
@@ -34,7 +30,7 @@ public class StartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_start);
 
         // Fragments list init
-        mFragments = new ArrayList<Fragment>();
+        mFragments = new ArrayList<>();
 
         mFragments.add(fragment1);
         mFragments.add(fragment2);
@@ -82,25 +78,9 @@ public class StartActivity extends AppCompatActivity {
     }
 
     @Override
-<<<<<<< HEAD
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.back:
-                if (index > 0) index--;
-                onBackPressed();
-                break;
-            case R.id.bt_continue:
-                if (index < 4) {
-                    index++;
-                    setFragment();
-                }
-                break;
-        }
-=======
     public void onBackPressed(){
         if (index > 0) index--;
         this.updateTip_Pages();
->>>>>>> c8d19842f8363fad745dec54d54217d7253bd856
 
         super.onBackPressed();
     }
