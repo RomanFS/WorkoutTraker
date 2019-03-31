@@ -15,20 +15,10 @@ public class MainActivity extends AppCompatActivity {
         Button start = findViewById(R.id.startButton);
         Button exit = findViewById(R.id.startButtonExit);
 
-        start.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, StartActivity.class));
-            }
-        });
+        start.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, StartActivity.class)));
 
         // This is must be a intent(MainPageActivity)
-        exit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
+        exit.setOnClickListener(v -> onBackPressed());
     }
 
 }
