@@ -30,25 +30,6 @@ public class StartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
-        // Init buttons
-        Button back = findViewById(R.id.back);
-        Button btContinue = findViewById(R.id.bt_continue);
-
-        back.setOnClickListener(v -> {
-            if (index > 0) index--;
-            onBackPressed();
-
-            this.updateTip_Pages();
-        });
-        btContinue.setOnClickListener(v -> {
-            if (index < 4) {
-                index++;
-                updateView();
-            }
-            this.updateTip_Pages();
-        });
-        this.updateTip_Pages();
-
         // Fragments list init
         mFragments = new ArrayList<Fragment>();
 
@@ -58,8 +39,24 @@ public class StartActivity extends AppCompatActivity {
         mFragments.add(fragment4);
         mFragments.add(fragment5);
 
+        // Init buttons
+        Button back = findViewById(R.id.back);
+        Button btContinue = findViewById(R.id.bt_continue);
+
+        back.setOnClickListener(v -> {
+            onBackPressed();
+        });
+        btContinue.setOnClickListener(v -> {
+            if (index < 4) {
+                index++;
+                updateView();
+            }
+            this.updateTip_Pages();
+        });
+
         // Setup activity fragment
         updateView();
+        this.updateTip_Pages();
     }
 
     private void updateView() {
@@ -71,6 +68,8 @@ public class StartActivity extends AppCompatActivity {
         }
 
         fragmentTransaction.commit();
+
+        this.updateTip_Pages();
     }
 
     @SuppressLint("SetTextI18n")
@@ -78,4 +77,13 @@ public class StartActivity extends AppCompatActivity {
         TextView page = findViewById(R.id.page_num);
         page.setText((index+1) + " of " + mFragments.size());
     }
+
+    @Override
+    public void onBackPressed(){
+        if (index > 0) index--;
+        this.updateTip_Pages();
+
+        super.onBackPressed();
+    }
+
 }
